@@ -1,6 +1,6 @@
 import React, { createContext, useState, useContext, useEffect } from 'react';
-import axios from 'axios';
 import { toast } from 'react-toastify';
+import api from '../services/api';
 
 const AuthContext = createContext();
 
@@ -27,9 +27,7 @@ export const AuthProvider = ({ children }) => {
 
   const loadUser = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/auth/me', {
-        headers: { Authorization: `Bearer ${token}` }
-      });
+      const response = await api.get('/auth/me');
       setUser(response.data.user);
     } catch (error) {
       console.error('Failed to load user:', error);
@@ -40,19 +38,32 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  const register = async (userData) => {
+    try {
+      const response = await api.post('/auth/register', userData);
+      localStorage.setItem('token', response.data.token);
+      setToken(response.data.token);
+      setUser(response.data.user);
+      toast.success('Registration successful!');
+      return response.data;
+    } catch (error) {
+      console.error('Registration error:', error);
+      toast.error(error.response?.data?.error || 'Registration failed');
+      throw error;
+    }
+  };
+
   const login = async (credentials) => {
     try {
-      const response = await axios.post('http://localhost:5000/api/auth/login', credentials);
-      
-      if (response.data.success) {
-        localStorage.setItem('token', response.data.token);
-        setToken(response.data.token);
-        setUser(response.data.user);
-        return response.data;
-      }
-      throw new Error('Login failed');
+      const response = await api.post('/auth/login', credentials);
+      localStorage.setItem('token', response.data.token);
+      setToken(response.data.token);
+      setUser(response.data.user);
+      toast.success('Login successful!');
+      return response.data;
     } catch (error) {
       console.error('Login error:', error);
+      toast.error(error.response?.data?.error || 'Login failed');
       throw error;
     }
   };
@@ -67,6 +78,7 @@ export const AuthProvider = ({ children }) => {
   const value = {
     user,
     loading,
+    register,
     login,
     logout,
     isAuthenticated: !!user,
