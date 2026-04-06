@@ -18,11 +18,9 @@ const api = axios.create({
 api.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem('token');
-
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
-
     return config;
   },
   (error) => Promise.reject(error)
@@ -58,6 +56,59 @@ export const authService = {
   },
   getCurrentUser: async () => {
     const response = await api.get('/auth/me');
+    return response.data;
+  }
+};
+
+export const jobService = {
+  getAllJobs: async () => {
+    const response = await api.get('/jobs');
+    return response.data;
+  },
+  getJobById: async (id) => {
+    const response = await api.get(`/jobs/${id}`);
+    return response.data;
+  },
+  createJob: async (jobData) => {
+    const response = await api.post('/jobs', jobData);
+    return response.data;
+  },
+  getRecruiterJobs: async () => {
+    const response = await api.get('/jobs/recruiter/myjobs');
+    return response.data;
+  },
+  deleteJob: async (id) => {
+    const response = await api.delete(`/jobs/${id}`);
+    return response.data;
+  }
+};
+
+export const applicationService = {
+  applyForJob: async (applicationData) => {
+    const response = await api.post('/applications', applicationData);
+    return response.data;
+  },
+  getMyApplications: async () => {
+    const response = await api.get('/applications/my-applications');
+    return response.data;
+  },
+  getJobApplications: async (jobId) => {
+    const response = await api.get(`/applications/job/${jobId}`);
+    return response.data;
+  },
+  updateApplicationStatus: async (applicationId, status) => {
+    const response = await api.put(`/applications/${applicationId}/status`, { status });
+    return response.data;
+  }
+};
+
+export const statsService = {
+  getRecruiterStats: async () => {
+    const response = await api.get('/stats/recruiter');
+    return response.data;
+  },
+  getApplicantStats: async () => {
+    const response = await api.get('/stats/applicant');
     return response.data;
   }
 };
