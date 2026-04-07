@@ -17,14 +17,14 @@ function NotificationBell() {
   const fetchNotifications = async () => {
     try {
       // Get unread count
-      const countRes = await fetch('http://localhost:5000/api/notifications/unread-count', {
+      const countRes = await fetch('https://smart-recruit-backend-cvr2.onrender.com/api/notifications/unread-count', {
         headers: { Authorization: `Bearer ${token}` }
       });
       const countData = await countRes.json();
       setUnreadCount(countData.count || 0);
 
       // Get recent notifications
-      const notifRes = await fetch('http://localhost:5000/api/notifications', {
+      const notifRes = await fetch('https://smart-recruit-backend-cvr2.onrender.com/api/notifications', {
         headers: { Authorization: `Bearer ${token}` }
       });
       const notifData = await notifRes.json();
@@ -36,7 +36,7 @@ function NotificationBell() {
 
   const markAsRead = async (id) => {
     try {
-      await fetch(`http://localhost:5000/api/notifications/${id}/read`, {
+      await fetch(`https://smart-recruit-backend-cvr2.onrender.com/api/notifications/${id}/read`, {
         method: 'PUT',
         headers: { Authorization: `Bearer ${token}` }
       });
@@ -48,7 +48,7 @@ function NotificationBell() {
 
   const markAllRead = async () => {
     try {
-      await fetch('http://localhost:5000/api/notifications/read-all', {
+      await fetch('https://smart-recruit-backend-cvr2.onrender.com/api/notifications/read-all', {
         method: 'PUT',
         headers: { Authorization: `Bearer ${token}` }
       });

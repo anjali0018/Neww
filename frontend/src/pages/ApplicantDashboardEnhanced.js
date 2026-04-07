@@ -59,7 +59,7 @@ function ApplicantDashboardEnhanced() {
 
   const fetchApplications = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/applications/my-applications', {
+      const response = await fetch('https://smart-recruit-backend-cvr2.onrender.com/api/applications/my-applications', {
         headers: { Authorization: `Bearer ${token}` }
       });
       const data = await response.json();
@@ -106,7 +106,7 @@ function ApplicantDashboardEnhanced() {
 
   const fetchSavedJobs = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/saved-jobs', {
+      const response = await fetch('https://smart-recruit-backend-cvr2.onrender.com/api/saved-jobs', {
         headers: { Authorization: `Bearer ${token}` }
       });
       const data = await response.json();
@@ -119,7 +119,7 @@ function ApplicantDashboardEnhanced() {
 
   const fetchInterviews = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/interviews/my-interviews', {
+      const response = await fetch('https://smart-recruit-backend-cvr2.onrender.com/api/interviews/my-interviews', {
         headers: { Authorization: `Bearer ${token}` }
       });
       const data = await response.json();
@@ -133,10 +133,10 @@ function ApplicantDashboardEnhanced() {
   const fetchNotifications = async () => {
     try {
       const [notifRes, countRes] = await Promise.all([
-        fetch('http://localhost:5000/api/notifications', {
+        fetch('https://smart-recruit-backend-cvr2.onrender.com/api/notifications', {
           headers: { Authorization: `Bearer ${token}` }
         }),
-        fetch('http://localhost:5000/api/notifications/unread-count', {
+        fetch('https://smart-recruit-backend-cvr2.onrender.com/api/notifications/unread-count', {
           headers: { Authorization: `Bearer ${token}` }
         })
       ]);
@@ -186,7 +186,7 @@ function ApplicantDashboardEnhanced() {
 
   const markNotificationRead = async (id) => {
     try {
-      await fetch(`http://localhost:5000/api/notifications/${id}/read`, {
+      await fetch(`https://smart-recruit-backend-cvr2.onrender.com/api/notifications/${id}/read`, {
         method: 'PUT',
         headers: { Authorization: `Bearer ${token}` }
       });
@@ -198,7 +198,7 @@ function ApplicantDashboardEnhanced() {
 
   const markAllRead = async () => {
     try {
-      await fetch('http://localhost:5000/api/notifications/read-all', {
+      await fetch('https://smart-recruit-backend-cvr2.onrender.com/api/notifications/read-all', {
         method: 'PUT',
         headers: { Authorization: `Bearer ${token}` }
       });

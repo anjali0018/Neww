@@ -3,7 +3,7 @@ const axios = require('axios');
 
 async function testRegister() {
   try {
-    const response = await axios.post('http://localhost:5000/api/auth/register', {
+    const response = await axios.post('https://smart-recruit-backend-cvr2.onrender.com/api/auth/register', {
       name: 'Test User',
       email: 'test@example.com',
       password: '123456',

@@ -20,7 +20,7 @@ function MyApplications() {
   const fetchApplications = async () => {
     try {
       setLoading(true);
-      const response = await fetch('http://localhost:5000/api/applications/my-applications', {
+      const response = await fetch('https://smart-recruit-backend-cvr2.onrender.com/api/applications/my-applications', {
         headers: { 
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'

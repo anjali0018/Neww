@@ -13,7 +13,7 @@ function AdminMessages() {
 
   const fetchMessages = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/contact', {
+      const response = await fetch('https://smart-recruit-backend-cvr2.onrender.com/api/contact', {
         headers: { Authorization: `Bearer ${token}` }
       });
       const data = await response.json();
@@ -28,7 +28,7 @@ function AdminMessages() {
 
   const markAsRead = async (id) => {
     try {
-      await fetch(`http://localhost:5000/api/contact/${id}/read`, {
+      await fetch(`https://smart-recruit-backend-cvr2.onrender.com/api/contact/${id}/read`, {
         method: 'PUT',
         headers: { Authorization: `Bearer ${token}` }
       });
@@ -42,7 +42,7 @@ function AdminMessages() {
   const deleteMessage = async (id) => {
     if (window.confirm('Are you sure you want to delete this message?')) {
       try {
-        await fetch(`http://localhost:5000/api/contact/${id}`, {
+        await fetch(`https://smart-recruit-backend-cvr2.onrender.com/api/contact/${id}`, {
           method: 'DELETE',
           headers: { Authorization: `Bearer ${token}` }
         });

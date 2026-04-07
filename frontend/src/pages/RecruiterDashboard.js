@@ -53,7 +53,7 @@ function RecruiterDashboard() {
   const fetchJobs = async () => {
     try {
       setLoading(true);
-      const response = await fetch('http://localhost:5000/api/jobs/recruiter/myjobs', {
+      const response = await fetch('https://smart-recruit-backend-cvr2.onrender.com/api/jobs/recruiter/myjobs', {
         headers: { Authorization: `Bearer ${token}` }
       });
       const data = await response.json();
@@ -66,7 +66,7 @@ function RecruiterDashboard() {
         let pending = 0, reviewed = 0, shortlisted = 0, hired = 0, rejected = 0;
         
         for (const job of jobsList) {
-          const appsResponse = await fetch(`http://localhost:5000/api/applications/job/${job._id}`, {
+          const appsResponse = await fetch(`https://smart-recruit-backend-cvr2.onrender.com/api/applications/job/${job._id}`, {
             headers: { Authorization: `Bearer ${token}` }
           });
           const appsData = await appsResponse.json();
@@ -97,7 +97,7 @@ function RecruiterDashboard() {
   const fetchApplications = async (jobId) => {
     setLoading(true);
     try {
-      const response = await fetch(`http://localhost:5000/api/applications/job/${jobId}`, {
+      const response = await fetch(`https://smart-recruit-backend-cvr2.onrender.com/api/applications/job/${jobId}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       const data = await response.json();
@@ -122,7 +122,7 @@ function RecruiterDashboard() {
 
   const updateApplicationStatus = async (applicationId, newStatus) => {
     try {
-      const response = await fetch(`http://localhost:5000/api/applications/${applicationId}/status`, {
+      const response = await fetch(`https://smart-recruit-backend-cvr2.onrender.com/api/applications/${applicationId}/status`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -154,7 +154,7 @@ function RecruiterDashboard() {
     if (!selectedApplication || !selectedJob) return;
     
     try {
-      const response = await fetch('http://localhost:5000/api/interviews', {
+      const response = await fetch('https://smart-recruit-backend-cvr2.onrender.com/api/interviews', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

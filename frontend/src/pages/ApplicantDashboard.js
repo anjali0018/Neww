@@ -29,7 +29,7 @@ function ApplicantDashboard() {
     try {
       const token = localStorage.getItem('token');
       
-      const appsResponse = await fetch('http://localhost:5000/api/applications/my-applications', {
+      const appsResponse = await fetch('https://smart-recruit-backend-cvr2.onrender.com/api/applications/my-applications', {
         headers: { Authorization: `Bearer ${token}` }
       });
       const appsData = await appsResponse.json();

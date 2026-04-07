@@ -23,7 +23,7 @@ function ManageJobs() {
   const fetchJobs = async () => {
     try {
       setLoading(true);
-      const response = await fetch('http://localhost:5000/api/jobs/recruiter/myjobs', {
+      const response = await fetch('https://smart-recruit-backend-cvr2.onrender.com/api/jobs/recruiter/myjobs', {
         headers: { Authorization: `Bearer ${token}` }
       });
       const data = await response.json();
@@ -43,7 +43,7 @@ function ManageJobs() {
   const handleDelete = async (jobId) => {
     if (window.confirm('Are you sure you want to delete this job?')) {
       try {
-        const response = await fetch(`http://localhost:5000/api/jobs/${jobId}`, {
+        const response = await fetch(`https://smart-recruit-backend-cvr2.onrender.com/api/jobs/${jobId}`, {
           method: 'DELETE',
           headers: { Authorization: `Bearer ${token}` }
         });

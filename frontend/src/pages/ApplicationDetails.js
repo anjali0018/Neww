@@ -24,12 +24,12 @@ function ApplicationDetails() {
       setLoading(true);
       
       // Fetch job details
-      const jobResponse = await fetch(`http://localhost:5000/api/jobs/${jobId}`);
+      const jobResponse = await fetch(`https://smart-recruit-backend-cvr2.onrender.com/api/jobs/${jobId}`);
       const jobData = await jobResponse.json();
       setJob(jobData.job);
       
       // Fetch applications
-      const appsResponse = await fetch(`http://localhost:5000/api/applications/job/${jobId}`, {
+      const appsResponse = await fetch(`https://smart-recruit-backend-cvr2.onrender.com/api/applications/job/${jobId}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       const appsData = await appsResponse.json();
@@ -45,7 +45,7 @@ function ApplicationDetails() {
 
   const handleStatusUpdate = async (applicationId, newStatus) => {
     try {
-      const response = await fetch(`http://localhost:5000/api/applications/${applicationId}/status`, {
+      const response = await fetch(`https://smart-recruit-backend-cvr2.onrender.com/api/applications/${applicationId}/status`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
